@@ -1,12 +1,15 @@
 package com.lh.qrcode.zxing;
 
-import com.google.zxing.BarcodeFormat;
-import com.google.zxing.EncodeHintType;
-import com.google.zxing.MultiFormatWriter;
+import com.google.zxing.*;
+import com.google.zxing.client.j2se.BufferedImageLuminanceSource;
 import com.google.zxing.client.j2se.MatrixToImageWriter;
 import com.google.zxing.common.BitMatrix;
+import com.google.zxing.common.HybridBinarizer;
 import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.Map;
@@ -35,5 +38,19 @@ public class ZXingQRCode {
 
         MatrixToImageWriter.writeToPath(bitMatrix, imaFormat, path);
 
+    }
+
+    public Result readQRCode(String filePath) throws Exception {
+        MultiFormatReader reader = new MultiFormatReader();
+
+        File file = new File(filePath);
+        BufferedImage image = ImageIO.read(file);
+        BinaryBitmap binaryBitmap = new BinaryBitmap(new HybridBinarizer(new BufferedImageLuminanceSource(image)));
+
+        Map map = new HashMap();
+        map.put(EncodeHintType.CHARACTER_SET, "utf-8");
+
+        Result result = reader.decode(binaryBitmap, map);
+        return  result;
     }
 }
