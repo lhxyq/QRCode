@@ -9,8 +9,8 @@ import java.nio.file.Path;
  */
 public class ZXingQRCodeTest {
     public static void main(String[] args) throws Exception{
-        Path path = new File("E:\\document\\lh\\program\\QRCode\\img\\baidu.png").toPath();
+        Path path = new File("E:\\document\\lh\\program\\QRCode\\img\\baidu.gif").toPath();
         ZXingQRCode zXingQRCode = new ZXingQRCode();
-        zXingQRCode.createQRCode(300, 300, "png", "www.baidu.com", path );
+        zXingQRCode.createQRCode(300, 300, "gif", "www.baidu.com", path );
     }
 }
