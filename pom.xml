@@ -60,4 +60,19 @@
             <artifactId>junit</artifactId>
         </dependency>
     </dependencies>
+
+    <!-- 部署到私服 -->
+    <distributionManagement>
+        <repository>
+            <id>LHR</id>
+            <name>LHR_RELEASE</name>
+            <url>http://localhost:8081/nexus/content/repositories/LHR/</url>
+        </repository>
+
+        <snapshotRepository>
+            <id>LHS</id>
+            <name>LHS_SNAPSHOTS</name>
+            <url>http://localhost:8081/nexus/content/repositories/LHS/</url>
+        </snapshotRepository>
+    </distributionManagement>
 </project>
